@@ -17,5 +17,5 @@ $font_family: Verdana, "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3"
 //-------------------------------------
 // screen
 //-------------------------------------
-$m: "only screen and (min-width: 479px)";
-$l: "only screen and (min-width: 920px)";
+$m: "(min-width: 479px)";
+$l: "(min-width: 920px)";
