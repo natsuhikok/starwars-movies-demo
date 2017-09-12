@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
 
 class App extends React.Component {
   constructor(props) {
@@ -32,3 +33,7 @@ ReactDOM.render(
   <App />,
   window.document.getElementById('App'),
 );
+
+$(window.document).ready(() => {
+  $('h1').css('color', 'red');
+});
