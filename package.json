@@ -9,7 +9,7 @@
     "build:webpack": "webpack -p",
     "watch:webpack": "webpack --watch",
     "build:ejs": "ejs-cli --base-dir src/templates/ '/**/**.ejs' --out ./public/",
-    "watch:ejs": "nodemon -e ejs -x \"npm run build:ejs \"",
+    "watch:ejs": "nodemon -e ejs -x \"npm run build:ejs \" --ignore public/",
     "build:sass": "node-sass ./src/styles/style.scss ./public/assets/styles/style.css --output-style compressed",
     "watch:sass": "node-sass ./src/styles/style.scss ./public/assets/styles/style.css --source-map-embed --watch",
     "browsersync": "browser-sync start --server 'public/' --files 'public/' --port 3000",
