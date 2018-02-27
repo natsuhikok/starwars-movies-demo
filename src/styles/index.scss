@@ -15,9 +15,10 @@
 // modules:
 // * extends-class/ mixin
   @import "modules";
+  @import "modules/headline";
 
 // componets:
-  @import "components/button";
+  @import "components/hero";
 
 // layouts:
   @import "layouts";
