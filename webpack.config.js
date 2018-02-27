@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    bundle: './src/scripts/app.js',
+    bundle: './src/scripts/index.js',
   },
   output: {
     path: path.join(__dirname, 'public/assets/scripts'),
