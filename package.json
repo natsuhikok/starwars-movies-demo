@@ -20,7 +20,7 @@
     "watch:ejs": "nodemon -e ejs,json -x \"npm run build:ejs \"",
     "build:sass": "node-sass ./src/styles/index.scss ./public/assets/styles/style.css --output-style compressed",
     "watch:sass": "nodemon -e scss -x \"npm run build:sass \"",
-    "browsersync": "browser-sync start --server 'public/' --files 'public/' --port 3000",
+    "browsersync": "browser-sync start --server 'public/' --files 'public/' --port 8080",
     "clean": "rimraf ./public/",
     "build": "npm-run-all -s clean minify:images build:*",
     "devbuild": "npm-run-all -s clean copy:images build:*",
