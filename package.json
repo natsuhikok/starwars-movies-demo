@@ -1,5 +1,15 @@
 {
   "name": "frontend-boilerplate",
+  "nodemonConfig": {
+    "ignore": [
+      "test",
+      "node_modules",
+      ".git",
+      "public",
+      "data",
+      "design"
+    ]
+  },
   "scripts": {
     "lint:js": "eslint src/scripts/**/* src/scripts/* || exit 0",
     "lint": "npm-run-all -s lint:*",
@@ -8,8 +18,8 @@
     "watch:images": "nodemon -e png,jpg -x \"npm run copy:images \" --ignore public/",
     "build:webpack": "webpack -p",
     "watch:webpack": "webpack --watch",
-    "build:ejs": "ejs-cli --base-dir src/templates/ '**.ejs' --out ./public/",
-    "watch:ejs": "nodemon -e ejs -x \"npm run build:ejs \" --ignore public/",
+    "build:ejs": "ejs-cli -b src/templates/ '**.ejs' -o ./public/ -O src/templates/meta.json",
+    "watch:ejs": "nodemon -e ejs,json -x \"npm run build:ejs \"",
     "build:sass": "node-sass ./src/styles/index.scss ./public/assets/styles/style.css --output-style compressed",
     "watch:sass": "node-sass ./src/styles/index.scss ./public/assets/styles/style.css --source-map-embed --watch",
     "browsersync": "browser-sync start --server 'public/' --files 'public/' --port 3000",
@@ -50,7 +60,7 @@
     "imagemin": "^5.2.2",
     "imagemin-cli": "^3.0.0",
     "node-sass": "^4.5.2",
-    "nodemon": "^1.15.1",
+    "nodemon": "^1.17.2",
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
     "webpack": "^4.1.1",
