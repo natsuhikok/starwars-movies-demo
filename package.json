@@ -11,8 +11,6 @@
     ]
   },
   "scripts": {
-    "lint:js": "eslint src/scripts/**/* src/scripts/* || exit 0",
-    "lint": "npm-run-all -s lint:*",
     "minify:images": "imagemin src/images/**/* --out-dir public/assets/images/",
     "copy:images": "copy src/images/**/* public/assets/images/",
     "watch:images": "nodemon -e png,jpg -x \"npm run copy:images \" --ignore public/",
@@ -56,7 +54,6 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
-    "htmlhint": "^0.9.13",
     "imagemin": "^5.2.2",
     "imagemin-cli": "^3.0.0",
     "node-sass": "^4.5.2",
