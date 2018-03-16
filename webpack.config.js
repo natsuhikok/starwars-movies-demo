@@ -16,14 +16,15 @@ module.exports = {
     ],
   },
   module: {
-    loaders: [
+    rules: [
       {
-        loader: 'babel-loader',
+        test: /\.js$/,
         exclude: /node_modules/,
-        test: /\.js[x]?$/,
-        query: {
-          cacheDirectory: true,
-          presets: ['react', 'es2015'],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['react', 'es2015'],
+          },
         },
       },
     ],
