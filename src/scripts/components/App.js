@@ -11,7 +11,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="container">
         <h1>Star Wars Films</h1>
         <Films />
       </div>
