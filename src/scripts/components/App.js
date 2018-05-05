@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchFilmsList } from '../actions';
 import Films from './Films';
+import Episode from './Episode';
 
 class App extends Component {
   componentDidMount() {
@@ -11,10 +13,17 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="container">
-        <h1>Star Wars Films</h1>
-        <Films />
-      </div>
+      <BrowserRouter>
+        <div className="container">
+          <h1>
+            <Link to="/">Star Wars Films</Link>
+          </h1>
+          <Switch>
+            <Route exact path="/" component={Films} />
+            <Route path="/:id" component={Episode} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
