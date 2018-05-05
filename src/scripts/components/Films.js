@@ -11,11 +11,11 @@ const Films = ({ films }) => {
     console.log('go to episode page');
   };
 
-  const renderFilmListItem = film => (
-    <tr role="gridcell" onClick={handleOnClick} key={film.episode_id}>
-      <td>{film.title}</td>
-      <td>director</td>
-      <td>release date</td>
+  const renderFilmListItem = episode => (
+    <tr role="gridcell" onClick={handleOnClick} key={episode.id}>
+      <td>{episode.title}</td>
+      <td>{episode.director}</td>
+      <td>{episode.release_date}</td>
     </tr>
   );
   return (
@@ -28,7 +28,7 @@ const Films = ({ films }) => {
         </tr>
       </thead>
       <tbody>
-        {films.map((film => renderFilmListItem(film)))}
+        {films.map((episode => renderFilmListItem(episode)))}
       </tbody>
     </table>
   );
