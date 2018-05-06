@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { fetchEpisode } from '../actions';
 
-const Episode = ({ films, id }) => {
-  console.log(id);
-  return (
-    <h2>{id}</h2>
-  );
-};
+class Episode extends Component {
+  componentDidMount() {
+    this.props.fetchEpisode(this.props.id);
+  }
 
-Episode.PropType = {};
+  render() {
+    // wait for loading
+    if (
+      !Object.keys(this.props.episode).length
+      ||
+      this.props.episode.id !== Number(this.props.id)
+    ) return <p>Loading...</p>;
 
-export default connect(
-  ({ films }, props) => ({ films, id: props.match.params.id }),
-)(Episode);
+    return (
+      <div>
+        <h2>{this.props.episode.title}</h2>
+        <ul>
+          <li>directer: {this.props.episode.directer}</li>
+          <li>release: {this.props.episode.release_date}</li>
+        </ul>
+      </div>
+    );
+  }
+}
+
+export default withRouter(connect(
+  ({ episode }, props) => ({ episode, id: props.match.params.id }),
+  dispatch => bindActionCreators({ fetchEpisode }, dispatch),
+)(Episode));
