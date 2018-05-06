@@ -1,27 +1,41 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchEpisode } from '../actions';
+import { fetchEpisode, fetchEpisodePlanets, fetchEpisodeCharacters } from '../actions';
 
 class Episode extends Component {
+  constructor(props) {
+    super(props);
+  }
   componentDidMount() {
     this.props.fetchEpisode(this.props.id);
   }
-
+  componentDidUpdate() {
+    // fetch planets and character after load episode
+    const { id, planets, planets_url, characters, characters_url } = this.props.episode;
+    if (id === Number(this.props.id)) {
+      if (planets.length === 0) {
+        planets_url.map((url) => {
+          this.props.fetchEpisodePlanets(url);
+          return url;
+        });
+      }
+      if (characters.length === 0) {
+        characters_url.map((url) => {
+          this.props.fetchEpisodeCharacters(url);
+          return url;
+        });
+      }
+    }
+  }
   render() {
-    // wait for loading
-    if (
-      !Object.keys(this.props.episode).length
-      ||
-      this.props.episode.id !== Number(this.props.id)
-    ) return <p>Loading...</p>;
-
+    if (this.props.episode.id !== Number(this.props.id)) return <p>Loading...</p>;
+    
     return (
       <div>
         <h2>{this.props.episode.title}</h2>
         <ul>
-          <li>directer: {this.props.episode.directer}</li>
+          <li>director: {this.props.episode.director}</li>
           <li>release: {this.props.episode.release_date}</li>
         </ul>
       </div>
@@ -29,7 +43,7 @@ class Episode extends Component {
   }
 }
 
-export default withRouter(connect(
+export default connect(
   ({ episode }, props) => ({ episode, id: props.match.params.id }),
-  dispatch => bindActionCreators({ fetchEpisode }, dispatch),
-)(Episode));
+  dispatch => bindActionCreators({ fetchEpisode, fetchEpisodePlanets, fetchEpisodeCharacters }, dispatch),
+)(Episode);

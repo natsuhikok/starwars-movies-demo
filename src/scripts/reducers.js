@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { FETCH_FILMS_LIST, FETCH_EPISODE } from './actions';
+import { FETCH_FILMS_LIST, FETCH_EPISODE, FETCH_EPISODE_PLANETS, FETCH_EPISODE_CHARACTERS } from './actions';
 
 const films = (state = [], action) => {
   switch (action.type) {
@@ -27,7 +27,17 @@ const episode = (state = {}, action) => {
         release_date: action.payload.data.release_date,
         characters_url: action.payload.data.characters,
         planets_url: action.payload.data.planets,
+        planets: [],
+        characters: [],
       };
+    case FETCH_EPISODE_PLANETS:
+      return Object.assign({}, state, {
+        planets: state.planets.concat(action.payload.data.name),
+      });
+    case FETCH_EPISODE_CHARACTERS:
+      return Object.assign({}, state, {
+        characters: state.characters.concat(action.payload.data.name),
+      });
     default:
       return state;
   }
