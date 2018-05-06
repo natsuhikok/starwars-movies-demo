@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { fetchFilmsList } from '../actions';
 
 class Films extends Component {
+  componentDidMount() {
+    this.props.fetchFilmsList();
+  }
   handleOnClick(id) {
     this.props.history.push(`/${id}`);
   }
@@ -38,9 +42,7 @@ class Films extends Component {
   }
 }
 
-Films.PropType = {
-  films: PropTypes.array.isRequired,
-  history: PropTypes.array.isRequired,
-};
-
-export default withRouter(connect(({ films }) => ({ films }))(Films));
+export default withRouter(connect(
+  ({ films }) => ({ films }),
+  dispatch => bindActionCreators({ fetchFilmsList }, dispatch),
+)(Films));
