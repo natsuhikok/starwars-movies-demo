@@ -28,7 +28,7 @@ class Episode extends Component {
     const renderList = (name, url) => {
       if (name.length !== url.length) return 'Loading...';
       return (
-        <ul>
+        <ul className="inlineList">
           {name.map(item => (<li key={item}>{item}</li>))}
         </ul>
       );
